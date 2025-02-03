@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   categoryService$ = inject(CategoryService).getCategories()
   private store = inject(Store)
 
-   categories$ = this.store.select(selectedCategoriesSuccess)
+   //categories$ = this.store.select(selectedCategoriesSuccess)
 
   ngOnInit(){
     this.onGetCategories()

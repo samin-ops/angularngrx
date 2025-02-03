@@ -1,0 +1,25 @@
+<span>{{categoryName}}</span>
+<hr/>
+<br/>
+<ng-container *ngFor="let product of products$ | async">
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{product.title}}</mat-card-title>
+    <mat-card-subtitle>{{product.price|currency}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-md-image src="{{product.image}}" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      {{product.description}}
+    </p>
+    <span>Category: {{product.category}}</span>
+  </mat-card-content>
+  <mat-card-actions>
+    <button type="button"  mat-raised-button color="primary">Acheter</button>
+    <button type="button" mat-raised-button color="warn">Ajouter au panier</button>
+  </mat-card-actions>
+</mat-card>
+</ng-container>
+
+

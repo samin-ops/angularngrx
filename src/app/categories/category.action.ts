@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { Category } from "./category.state";
 
 export const categoryActions = createAction('[Category] Get categories')
 

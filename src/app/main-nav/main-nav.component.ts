@@ -10,6 +10,11 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterModule } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
+import { CategoryService } from '../categories/category.service';
+import { Store } from '@ngrx/store';
+import { selectedCategoriesSuccess } from '../categories/category.selector';
+import { selectedProducts } from '../products/store/product.selectors';
+import { ProductService } from '../products/store/product.service';
 
 
 @Component({
@@ -35,4 +40,11 @@ export class MainNavComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(map(result => result.matches),shareReplay()
     );
+    private store = inject(Store)
+
+    categoryService$ = inject(CategoryService).getCategories()
+       categories$ = this.store.select(selectedCategoriesSuccess)
+
+
+
 }

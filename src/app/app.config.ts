@@ -1,5 +1,5 @@
 import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { appRoutes} from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -7,26 +7,31 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import{provideStoreDevtools} from '@ngrx/store-devtools'
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { CategoryEffects } from './categories/category.effects';
 import { categoryFeature } from './categories/category.selector';
+import { productFeature } from './products/store/product.selectors';
+import * as loadProducts  from './products/store/product.effects';
+import * as loadProductsAllProducts  from './products/store/product.effects';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appRoutes), provideClientHydration(), provideAnimationsAsync(),
-    provideHttpClient(),
+    provideRouter(appRoutes, withComponentInputBinding(), ),
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch()),
     provideStore(),
     provideState(categoryFeature),
-    provideEffects([CategoryEffects]),
+    //provideState(productFeature),
+    provideEffects([CategoryEffects]), // loadProducts  loadProductsAllProducts
     provideStoreDevtools({
       maxAge: 25,
       logOnly: isDevMode(),
       autoPause: true,
       trace:false,
       traceLimit:75
-    })
-
+    }),
   ]
 };
 

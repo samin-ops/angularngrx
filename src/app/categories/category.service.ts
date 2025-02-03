@@ -14,14 +14,9 @@ export class CategoryService {
 
   constructor() { }
 
-  getCategories(){
-    return this.http.get<string[]>(this.api).pipe(
-      map((categories: any) => categories),
-      catchError(error => {
-        console.error(error);
-        return error;
-      })
-    )
+  getCategories():Observable<string[]>{
+    return this.http.get<string[]>(this.api)
+
   }
 
 }

@@ -14,7 +14,6 @@ const categoryFeatureKey = 'category'; //=
   selectorCategoryState,
   (state:CategoryState)=>state.error);
 
-
   export const categoryFeature = createFeature({
     name:categoryFeatureKey,
     reducer:categoryReducer
