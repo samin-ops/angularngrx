@@ -18,21 +18,30 @@ export class ProductListComponent implements OnInit {
 
   private readonly store = inject(Store);
 
-  @Input() categoryName: string="";
+  @Input() set categoryName(name: string) {
+    if (name) {
+      this.store.dispatch(productActions.loadProductsByCategory({ category: name }));
 
-  products$ = this.categoryName ? this.store.select(selectProductsByCategory(this.categoryName)) : this.store.select(selectedProducts);
+    }else{
+      this.store.dispatch(productActions.loadProducts())
+
+    }
+
+  }
+
+  products$ = this.store.select(selectedProducts);
 
   ngOnInit(){
-    this.getProductsByCategory(this.categoryName)
-    this.getAllProducts()
+
+
   }
 
-  getProductsByCategory(category: string){
-    this.store.dispatch(productActions.loadProductsByCategory({category}))
-  }
 
-  getAllProducts(){
-    this.store.dispatch(productActions.loadProductsAll())
-  }
+
+  // reload(){
+  //   setTimeout(() => {
+  //     window.location.reload();
+  //   }, 300000); // Activate after 5 minutes.
+  // }
 
 }

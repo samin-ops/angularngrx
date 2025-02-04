@@ -12,9 +12,8 @@ export const loadProductsByCategory = createEffect(
       ofType( productActions.loadProductsByCategory),
       exhaustMap((action) => {
         return productService.getAllProductsByCategory(action.category).pipe(
-          map((products: Product[]) => productActions.getSuccess({products})),
-          catchError((error) =>
-            of(productActions.getError({ error }))
+          map((products: Product[]) => productActions.productSuccess({products})),
+          catchError((error) =>of(productActions.productFailure({ error }))
           )
         );
       })
@@ -26,12 +25,11 @@ export const loadProductsByCategory = createEffect(
 export const loadProductsAllProducts = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
     return actions$.pipe(
-      ofType( productActions.loadProductsAll),
+      ofType( productActions.loadProducts),
       exhaustMap(() => {
         return productService.getAllProducts().pipe(
-          map((products: Product[]) => productActions.getSuccess({products})),
-          catchError((error) =>
-            of(productActions.getError({ error }))
+          map((products: Product[]) => productActions.productSuccess({products})),
+          catchError((error) => of(productActions.productFailure({ error }))
           )
         );
       })

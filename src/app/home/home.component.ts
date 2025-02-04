@@ -1,15 +1,21 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { ProductListComponent } from "../products/product-list/product-list.component";
+import { Store } from "@ngrx/store";
+import { selectedProducts } from "../products/store/product.selectors";
 
 @Component({
   selector:'scs-home',
   standalone:true,
   styleUrl:'./home.component.css',
   templateUrl:'./home.component.html',
-  imports:[CommonModule]
+  imports:[CommonModule, RouterOutlet, ProductListComponent]
 })
 
 export class HomeComponent{
+  private store = inject(Store)
+  products$ = this.store.select(selectedProducts)
 
 
 }

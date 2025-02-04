@@ -5,12 +5,12 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar><mat-icon>menu</mat-icon></mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="'products'">All Products</a>
+      <a mat-list-item [routerLink]="['/product']">All Products</a>
       <ng-container *ngFor="let cat of categories$ | async">
-        <a mat-list-item [routerLink]="['products', cat]">{{cat}}</a>
+        <a mat-list-item [routerLink]="['/product', cat]">{{cat}}</a>
       </ng-container>
-      <a mat-list-item [routerLink]="['cart']">View Cart</a>
-      <a mat-list-item [routerLink]="['orders']">ViewOrders</a>
+      <a mat-list-item [routerLink]="['/cart']">View Cart</a>
+      <a mat-list-item [routerLink]="['/orders']">ViewOrders</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -1,4 +1,4 @@
-import { createFeature, createReducer, on } from "@ngrx/store";
+import {  createReducer, on } from "@ngrx/store";
 import { Product } from "./product.interface";
 import { productActions } from "./product.actions";
 
@@ -16,13 +16,13 @@ const initialState: ProductState = {
 
 export const productReducer = createReducer(
   initialState,
-    on(productActions.getSuccess, (state, action) => ({
+    on(productActions.productSuccess, (state, action) => ({
         ...state,
         products: action.products,
         productCount:action.products.length,
         error: ''
     })),
-    on(productActions.getError, (state, action) => ({
+    on(productActions.productFailure, (state, action) => ({
         ...state,
         products: [],
         error: action.error
