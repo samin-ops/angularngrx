@@ -4,7 +4,6 @@ import { cartActions } from "./cart.actions";
 import { inject } from "@angular/core";
 import { CartService } from "./cart.service";
 
-
 export const loadCart = createEffect(
   (actions$ = inject(Actions), cartService = inject(CartService)) => {
     return actions$.pipe(

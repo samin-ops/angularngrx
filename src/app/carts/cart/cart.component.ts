@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   private store = inject(Store)
   cart$ = this.store.select(selectedCart)
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.store.dispatch(cartActions.loadCart())
   }
 

@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { productActions } from '../store/product.actions';
-import { selectedProducts, selectProductsByCategory } from '../store/product.selectors';
+import { selectedProducts} from '../store/product.selectors';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,7 +24,6 @@ export class ProductListComponent implements OnInit {
 
     }else{
       this.store.dispatch(productActions.loadProducts())
-
     }
 
   }

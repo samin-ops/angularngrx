@@ -10,8 +10,12 @@ import { cartFeature } from './carts/store/cart.selectors';
 export const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'product',
+    redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./user/login/login.component').then(m => m.LoginComponent)
   },
  {
    path: 'product',
