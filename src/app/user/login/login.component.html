@@ -5,8 +5,8 @@
   <mat-form-field  class="example-full-width">
     <input type="text" matInput placeholder="username" formControlName="username"/>
     <mat-hint>User name is your email</mat-hint>
-    <mat-error *ngIf="loginForm.hasError('email', 'username')">
-      Please, user name should be correct email address!
+    <mat-error *ngIf="loginForm.hasError( 'maxLength','username')">
+      Please, user name should be at least 8 characters !
     </mat-error>
   </mat-form-field>
   <mat-form-field  class="example-full-width">
@@ -17,7 +17,7 @@
      formControlName="password"
      />
     <mat-error *ngIf="loginForm.hasError('minlength','password')">
-      Please, password min length should be at least 8 characters long.
+      Please, password min length should be at least 6 characters long.
     </mat-error>
     <mat-error *ngIf="loginForm.hasError('maxLength','password')">
       Please, password max length should be at least 16 characters long.
