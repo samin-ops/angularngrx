@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterModule } from '@angular/router';
@@ -30,7 +31,8 @@ import { selectedCategoriesSuccess } from '../categories/category.selector';
     AsyncPipe,
     CommonModule,
     RouterModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule
   ]
 })
 export class MainNavComponent {
@@ -41,9 +43,7 @@ export class MainNavComponent {
     );
 
     private store = inject(Store)
-    categoryService$ = inject(CategoryService).getCategories()
-       categories$ = this.store.select(selectedCategoriesSuccess)
-
-
+    categoryService = inject(CategoryService).getCategories()
+    categories$ = this.store.select(selectedCategoriesSuccess)
 
 }

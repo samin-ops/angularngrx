@@ -1,9 +1,10 @@
 <mat-sidenav-container class="sidenav-container">
+
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar><mat-icon>menu</mat-icon></mat-toolbar>
+    <mat-toolbar>Dashboard</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/product']">All Products</a>
       <ng-container *ngFor="let cat of categories$ | async">
@@ -13,8 +14,10 @@
       <a mat-list-item [routerLink]="['/orders']">ViewOrders</a>
     </mat-nav-list>
   </mat-sidenav>
+
+  <!-- toolbar start-->
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar >
       @if (isHandset$ | async) {
         <button
           type="button"
@@ -25,9 +28,22 @@
         </button>
       }
       <div  class="Nav-bar">
-        <span>angularngrx</span>
+        <span>MyApp</span>
+        <button class="mat-menus" mat-icon-button type="button" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>account_circle</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <button [routerLink]="['/profile']" type="button" mat-menu-item>
+            <mat-icon>face_5</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button type="button" mat-menu-item>
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
       </div>
     </mat-toolbar>
+     <!-- toolbar end-->
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
   </mat-sidenav-content>

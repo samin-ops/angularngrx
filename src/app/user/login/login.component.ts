@@ -4,7 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular
 import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatButtonModule} from '@angular/material/button'
-import { UserService } from '../store/user.service';
+import { LoginService } from '../store/login.service';
 import { Router } from '@angular/router';
 
 
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 
 })
 export class LoginComponent {
-  private userService = inject(UserService)
+  private userService = inject(LoginService)
 
   search = new FormControl('');
   constructor(private router: Router) {}

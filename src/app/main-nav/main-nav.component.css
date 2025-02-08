@@ -4,6 +4,9 @@
 
 .sidenav {
   width: 200px;
+  height: 100%;
+  background-color:aqua;
+
 }
 
 .sidenav .mat-toolbar {
@@ -14,8 +17,20 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  background-color:aqua;
+  color: white;
+
 }
+
 .title {
   margin-left: 8px;
   background-color: blue;
 }
+
+.Nav-bar{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+

@@ -1,5 +1,6 @@
 .example-card {
   max-width: 400px;
+
 }
 
 .example-header-image {
@@ -10,4 +11,5 @@
 .mat-card {
   margin-bottom: 10px;
   padding: 4px;
+
 }

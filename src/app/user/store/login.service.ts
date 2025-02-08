@@ -5,7 +5,7 @@ import { inject, Injectable } from "@angular/core";
   providedIn: 'root'
 })
 
-export class UserService {
+export class LoginService {
   isLoggedIn = false
 
 
@@ -20,6 +20,11 @@ export class UserService {
 
 getToken(){
   return localStorage.getItem('token')
+}
+
+
+logout(){
+  localStorage.clear()
 }
 
 
