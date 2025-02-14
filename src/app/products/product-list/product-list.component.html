@@ -9,14 +9,12 @@
   </mat-card-header>
   <img mat-card-md-image src="{{product.image}}" alt="Photo of a Shiba Inu">
   <mat-card-content>
-    <p>
-      {{product.description}}
-    </p>
+    <p>{{product.description}}</p>
     <span>Category: {{product.category}}</span>
   </mat-card-content>
   <mat-card-actions>
     <button type="button"  mat-raised-button color="primary">Acheter</button>
-    <button type="button" mat-raised-button color="warn">Ajouter au panier</button>
+    <button type="button" mat-raised-button color="warn" (click)="addToCart(product.id, 1, 1)">Ajouter au panier</button>
   </mat-card-actions>
 </mat-card>
 </ng-container>

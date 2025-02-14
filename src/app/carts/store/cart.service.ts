@@ -19,8 +19,14 @@ export class CartService{
     return this.http.post<Product>(`${this.api}`, data);
   }
 
+  // getCart
   getCart(){
     return this.http.get<Cart[]>(`${this.api}`)
   }
+
+  getCartById(id: number){
+    return this.http.get<Cart>(`https://fakestoreapi.com/carts/${id}`)
+  }
+
 
 }

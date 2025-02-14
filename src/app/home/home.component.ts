@@ -3,7 +3,7 @@ import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { ProductListComponent } from "../products/product-list/product-list.component";
 import { Store } from "@ngrx/store";
-import { selectedProducts } from "../products/store/product.selectors";
+import { selectProducts } from "../products/store/product.reducers";
 
 @Component({
   selector:'scs-home',
@@ -15,7 +15,6 @@ import { selectedProducts } from "../products/store/product.selectors";
 
 export class HomeComponent{
   private store = inject(Store)
-  products$ = this.store.select(selectedProducts)
-
+  products$ = this.store.select(selectProducts)
 
 }

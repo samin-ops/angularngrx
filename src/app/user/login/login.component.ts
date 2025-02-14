@@ -5,19 +5,34 @@ import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatButtonModule} from '@angular/material/button'
 import { LoginService } from '../store/login.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+//import { selectedUserSuccess } from '../store/user.selectors';
+import { authActions } from '../store/user.actions';
+import { combineLatest } from 'rxjs';
+import { selectErrors, selectIsLoading, selectIsSubmitting } from '../store/user.reducers';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatButtonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 
 })
 export class LoginComponent {
   private userService = inject(LoginService)
+
+  private store= inject(Store)
+
+  // combineLatest => selector
+  user$ = combineLatest({
+    isSubmitting: this.store.select(selectIsSubmitting),
+    errors: this.store.select(selectErrors),
+    isLoading: this.store.select(selectIsLoading)
+  })
+
 
   search = new FormControl('');
   constructor(private router: Router) {}
@@ -27,25 +42,19 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]),
   })
 
-  onSubmit() {
-    const username = this.loginForm.get('username')?.value;
-    const password = this.loginForm.get('password')?.value;
-    if (username && password) {
-      this.userService.login(username, password)
-      .subscribe({
-        next:((token)=>{
-          console.log(token);
-          ///localStorage.getItem('token')
-          //this.userService.getToken()
+  login(){
+    if(this.loginForm.valid){
+      const username = this.loginForm.get('username')?.value ?? '';
+      const password = this.loginForm.get('password')?.value ?? '';
+      this.store.dispatch(authActions.login({username, password}))
+      this.userService.login(username, password).subscribe({
+        next: (token) =>{
+          console.log('token:', token);
           this.userService.isLoggedIn = true
-          this.router.navigate(['/product']);
-        }),
-        error:((error)=>{
-          console.log(error);
-        })
-      });
-    } else {
-      console.error('Username and password are required');
+          this.router.navigateByUrl("/product")
+
+        }
+      })
     }
   }
 

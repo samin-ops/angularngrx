@@ -14,5 +14,10 @@ export class UserService {
     return this.http.get<User>("https://fakestoreapi.com/users/2")
   }
 
+ updateUser(user: User){
+  return this.http.put<User>(`https://fakestoreapi.com/users/${user.id}`, user)
+
+ }
+
 
 }

@@ -1,15 +1,12 @@
-import { createAction, props } from "@ngrx/store";
+import {createActionGroup, emptyProps, props } from "@ngrx/store";
 
 
-export const categoryActions = createAction('[Category] Get categories')
+export const categoriesActions = createActionGroup({
+  source: 'Category',
+  events:{
+    loadCategories:emptyProps(),
+    loadCategorySuccess:props<{ categories: string[]}>(),
+    loadCategoriesFailure: props<{error: string}>()
+  }
 
-export const categoryActionsSuccess = createAction(
-  '[Category] Get categories success',
-  props<{ categories: string[] }>()
-
-);
-export const categoriesActionsError = createAction(
-  '[Category] Get categories error',
-  props<{ error: string}>()
-
-);
+})

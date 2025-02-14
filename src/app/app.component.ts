@@ -5,10 +5,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { CategoryService } from './categories/category.service';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { categoryActions } from './categories/category.action';
-import { selectedCategoriesSuccess } from './categories/category.selector';
+import { categoriesActions } from './categories/category.action';
+
 
 
 @Component({
@@ -30,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   onGetCategories(){
-    this.store.dispatch(categoryActions())
+    this.store.dispatch(categoriesActions.loadCategories())
   }
 
 

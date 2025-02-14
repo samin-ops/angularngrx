@@ -14,7 +14,7 @@ import {
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { User } from '../store/user.interface';
+
 
 @Component({
   selector: 'app-profile',
@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
 
   profileForm!: FormGroup;
 
-
   user = toSignal(this.userService.getUser());
 
   fullName = computed(
@@ -48,15 +47,16 @@ export class ProfileComponent implements OnInit {
   // }
 
   ngOnInit() {
+    // premiere facon de faire
     this.profileForm = this.fb.group({
-      id: ['', Validators.required],
+      id: [{value:'', disabled:true}, Validators.required],
       email: [''],
       phone: [''],
       name: this.fb.group({
         firstname: ['', Validators.required],
         lastname: [''],
       }),
-      // premiere facon de faire
+
        address: this.fb.group({//nested form group
         city: ['', Validators.required],
         street: [''],
@@ -106,4 +106,14 @@ export class ProfileComponent implements OnInit {
     })
 
   }
+
+  onUpdateProfile(){
+    this.userService.updateUser(this.profileForm.getRawValue()).subscribe((user)=>{
+      console.log(user);
+    })
+  }
+  enableDisabled(){
+    this.profileForm.enabled ? this.profileForm.disable():this.profileForm.enable()
+  }
+
 }

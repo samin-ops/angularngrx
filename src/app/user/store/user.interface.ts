@@ -3,13 +3,14 @@ export interface User {
   email: string
   username: string
   password: string
+  token?: string
   name: Name
   phone: string
   address: Address
 
 }
 
-export interface Address {
+export interface  Address {
   geolocation: Geolocation
   city: string
   street: string

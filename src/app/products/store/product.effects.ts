@@ -6,7 +6,7 @@ import { ProductService } from "./product.service";
 import { Product } from "./product.interface";
 
 // mapping to a different action
-export const loadProductsByCategory = createEffect(
+export const loadProductsByCategoryEffect = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
     return actions$.pipe(
       ofType( productActions.loadProductsByCategory),
@@ -22,7 +22,7 @@ export const loadProductsByCategory = createEffect(
   { functional: true }
 );
 
-export const loadProductsAllProducts = createEffect(
+export const loadProductsAllProductsEffect = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
     return actions$.pipe(
       ofType( productActions.loadProducts),

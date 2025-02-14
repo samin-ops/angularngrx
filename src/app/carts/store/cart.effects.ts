@@ -4,7 +4,7 @@ import { cartActions } from "./cart.actions";
 import { inject } from "@angular/core";
 import { CartService } from "./cart.service";
 
-export const loadCart = createEffect(
+export const loadCartEffect = createEffect(
   (actions$ = inject(Actions), cartService = inject(CartService)) => {
     return actions$.pipe(
       ofType( cartActions.loadCart),
@@ -19,3 +19,4 @@ export const loadCart = createEffect(
   },
   { functional: true }
 );
+

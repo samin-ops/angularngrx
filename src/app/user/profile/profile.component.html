@@ -7,8 +7,14 @@
 {{fullName()}}
 <br>
 {{profileForm.value | json}}
-
-<form class="example-form" [formGroup]="profileForm">
+<br><br>
+<button  mat-raised-button color="primary" (click)="enableDisabled()"> Enable/Disable Edit</button>
+<br>
+<form class="example-form" [formGroup]="profileForm" (ngSubmit)="onUpdateProfile()">
+  <mat-form-field class="example-full-width">
+    <mat-label>id</mat-label>
+    <input matInput placeholder="id" formControlName="id">
+  </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>email</mat-label>
     <input matInput placeholder="Email" formControlName="email">
@@ -24,7 +30,6 @@
       <input matInput placeholder="Last Name" formControlName="lastname">
     </mat-form-field>
   </div>
-
   <div formGroupName="address">
     <mat-form-field class="example-full-width">
       <input matInput type="number" placeholder="Street" formControlName="street">
@@ -47,7 +52,7 @@
       </mat-form-field>
     </div>
   </div>
-
+<button type="submit" [disabled]="profileForm.dirty && profileForm.invalid" mat-raised-button color="primary">Update Profile</button>
 <!--
 {# <button type="submit" mat-raised-button color="primary" (click)="addAddress()">Add Address</button>
 <button

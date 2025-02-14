@@ -2,7 +2,6 @@ import { createActionGroup, emptyProps, props } from "@ngrx/store";
 import { Product } from "./product.interface";
 
 
-
 export const productActions = createActionGroup({
   source: 'Product',
   events:{

@@ -1,11 +1,10 @@
+
 export interface Cart{
   id: number,
-  userId: number,
   date: string,
-  product: [
-    {
-      productId: number,
-      quantity: number
-    }
-  ]
+  userId: number,
+  products: {
+    productId:number,
+    quantity:number
+  }[]
 }
