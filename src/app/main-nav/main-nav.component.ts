@@ -44,8 +44,6 @@ export class MainNavComponent implements OnInit {
 
     private store = inject(Store)
     categoryService = inject(CategoryService).getCategories()
-    // categories selectors
-
 
     // categories$ =  combineLatest({
     //   categories: this.store.select(selectCategories),
@@ -53,7 +51,6 @@ export class MainNavComponent implements OnInit {
     // })
 
     categories$ = this.store.select(selectCategories)
-
 
     ngOnInit(){
       this.store.dispatch(categoriesActions.loadCategories())

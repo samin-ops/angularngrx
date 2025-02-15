@@ -19,18 +19,7 @@ import { cartActions } from '../../carts/store/cart.actions';
 })
 export class ProductListComponent{
 
-  @Input() products:Product[] =[] //
+  @Input() products:Product[] =[]
 
-  private readonly store = inject(Store);
-
-  @Input() set categoryName(name: string) {
-    name ? this.store.dispatch(productActions.loadProductsByCategory({ category: name })): this.store.dispatch(productActions.loadProducts())
-  }
-  products$ = this.store.select(selectProducts);
-
-
-  addToCart(productId: number, userId: number, quantity: number){
-    this.store.dispatch(cartActions.addItem({productId, userId, quantity}))
-  }
 
 }

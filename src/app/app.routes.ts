@@ -20,15 +20,14 @@ export const appRoutes: Routes = [
    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
    canMatch:[authGuard]
  },
-  {path:'product/:categoryName',
-    loadComponent: () => import('./products/product-list/product-list.component').then(m => m.ProductListComponent),
-
+  {
+    path:'product/:categoryName',
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
     canMatch:[authGuard]
   },
   {
     path:'cart',
     loadComponent: () => import('./carts/cart/cart.component').then(m => m.CartComponent),
-    //providers:[provideEffects([loadProducts, loadProductsAllProducts, loadCart]),provideState(cartFeature)],
     canMatch:[authGuard]
   },
   {
